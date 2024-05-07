@@ -89,10 +89,9 @@ def get_data():
     username = session.get('user')
     if not username:
         return jsonify({'error': 'User not logged in'}), 401
-    user_data = users.get(username, {'state': '', 'city': ''})
+    user_data = users.get(username, {'state': '', 'city': '', 'logged': '0'})  # Default logged to '0' if not set
     return jsonify(user_data)
-
-   
+ 
 
 
 

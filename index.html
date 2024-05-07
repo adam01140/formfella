@@ -164,15 +164,11 @@
 			
 			<h2>
             <p><strong>What's your full name?</strong></p>
-            <input type="text" id="PetitionerName1[0]" placeholder="Full Name"><br>
-			
-
-			
-            <input type="text" id="CaseNumber[0]" placeholder="Case Number"><br>
+            <input type="text" id="PetitionerName1[0]" placeholder="Full Name">
+			<br>
             <p><strong>What's your street address?</strong></p>
-            <input type="text" id="PetitionerStrAddress[0]" placeholder="Street"><br>
-         
-	
+            <input type="text" id="PetitionerStrAddress[0]" placeholder="Street">
+			<br>	
 			<input type="text" id="PetitionerCity[0]" class="PetitionerCity" placeholder="City">
 			<br>
 			<input type="text" id="PetitionerState[0]" class="PetitionerState" placeholder="State">
@@ -492,23 +488,6 @@ function saveData() {
 
 
 
-function fetchData() {
-    console.log('Fetching data from server');
-    fetch('/get_data')
-    .then(response => {
-        if (!response.ok) {
-            //throw new Error('Failed to fetch');
-        }
-        return response.json();
-    }).then(data => {
-        console.log('Data received from server:', data);
-        if (data.state && data.city) {
-            displayUserProfile(data.state, data.city);
-        }
-    }).catch(error => console.error('Failed to fetch or parse data:', error));
-}
-
-
 
 
 
@@ -554,18 +533,35 @@ function logIn() {
         if (response.ok) {
             fetchData();  // Fetch user profile data right after login
             document.getElementById('questions').style.display = 'block';
-			//document.getElementById('userProfile').style.display = 'block';
             document.getElementById('userForms').style.display = 'none';
             alert('Welcome');
         } else {
             response.text().then(text => alert(text));
         }
     }).catch(error => {
-        //console.error('Login failed:', error);
+        console.error('Login failed:', error);
     });
 }
 
-	
+function fetchData() {
+    console.log('Fetching data from server');
+    fetch('/get_data')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+        return response.json();
+    }).then(data => {
+        console.log('Data received from server:', data);
+        if (data.state && data.city) {
+            displayUserProfile(data.state, data.city);
+        }
+        if (data.logged === '1') { // Check if logged is set to '1'
+            window.location.href = 'profile.html'; // Show the alert
+        }
+    }).catch(error => console.error('Failed to fetch or parse data:', error));
+}
+
 	
 	
 	
