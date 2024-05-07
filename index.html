@@ -463,21 +463,21 @@ function displayUserProfile(state, city) {
 
 // In the saveData() function
 function saveData() {
-    // Using class to get value; it doesn't matter which one since all are synced
     const state = document.querySelector('.PetitionerState').value;
     const city = document.querySelector('.PetitionerCity').value;
+    const logged = '1';  // Indicating the user has completed the form
 
-    console.log('Sending data to server:', { state, city });
+    console.log('Sending data to server:', { state, city, logged });
 
     fetch('/save_data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+        body: `state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}&logged=${encodeURIComponent(logged)}`
     }).then(response => {
         if (!response.ok) {
-            //throw new Error('Failed to save data');
+            throw new Error('Failed to save data');
         }
         return response.json();
     }).then(data => {
@@ -487,6 +487,7 @@ function saveData() {
         console.error('Error saving data:', error);
     });
 }
+
 
 
 

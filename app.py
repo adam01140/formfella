@@ -17,12 +17,15 @@ users = {}
 
 def save_data_to_csv():
     with open('user_data.csv', 'w', newline='') as csvfile:
-        fieldnames = ['username', 'password', 'state', 'city']
+        fieldnames = ['username', 'password', 'state', 'city','logged']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
         for username, data in users.items():
-            writer.writerow({'username': username, 'password': data['password'], 'state': data.get('state', ''), 'city': data.get('city', '')})
+            writer.writerow({'username': username, 'password': data['password']
+            , 'state': data.get('state', '')
+            , 'logged': data.get('logged', '')
+            , 'city': data.get('city', '')})
 
 def load_data_from_csv():
     try:
@@ -57,16 +60,18 @@ def signup():
 def save_data():
     state = request.form['state']
     city = request.form['city']
+    logged = request.form['logged']  # Retrieve logged status
     username = session.get('user')
     if not username:
         return jsonify({'error': 'User not logged in'}), 401
     if username in users:
-        users[username].update({'state': state, 'city': city})
+        users[username].update({'state': state, 'city': city, 'logged': logged})
         save_data_to_csv()  # Save to CSV immediately after update
         print(f"Data saved for {username}: {users[username]}")
         return jsonify(success=True)
     else:
         return jsonify({'error': 'User does not exist'}), 404
+
 
 @app.route('/login', methods=['POST'])
 def login():
