@@ -7,7 +7,7 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f9;
-        padding: 20px;
+        padding: 0px;
         text-align: center;
     }
 
@@ -100,6 +100,18 @@
 	width: 100%;
 }
 
+#whole {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 0px;              /* Some padding inside the border */
+    margin: 20px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 1000px;               /* Fixed width */
+    height: 90%              /* Fixed height */
+    
+}
+
+
 #pdfPreview, #pdfPreview2 {
     flex: 1;  /* Each takes up equal space */
     border: 2px solid lightblue;
@@ -144,6 +156,10 @@
 
 </head>
 <body>
+
+<center>
+<div id="whole">
+
 
 <h1>Waive Court Fees Form</h1>
 
@@ -273,14 +289,24 @@
 
         <div id="questions4" style="display:none">
             <h1>Form Complete!</h1>
-			<button class="back-button" onclick="revealForm()">Access Form</button>
 			
+			<button class="next-button" onclick="downloadPDF()">Download Form</button>
 			
+			<!--
+			<button class="back-button" onclick="revealForm()">View Form</button>
+			<br>
+			
+			-->
 			
 			<div class="pdf-container" id="pdf-container" style="display:none">
     <div id="pdfPreview" style="display:none">
         <iframe id="pdfFrame" style="width:100%; height:100%;"></iframe>
     </div>
+			
+
+			<br>
+			<button class="next-button"  onclick="exit()">Exit</button>
+			
     
     <div id="pdfPreview2" style="display:none">
         <iframe id="pdfFrame2" style="width:100%; height:100%;"></iframe>
@@ -295,7 +321,11 @@
 	
 	
 <br><br>
-	
+
+
+
+<br><br>
+</div>
 
 
 
@@ -315,6 +345,28 @@
 
 
 <script>
+
+function exit() {
+
+    window.location.href = 'profile.html';
+}
+
+
+
+function downloadPDF() {
+    var iframe = document.getElementById('pdfFrame'); // Assuming 'pdfFrame' is your iframe ID
+    var url = iframe.src; // Get the current src of the iframe which points to the PDF blob
+
+    // Create a temporary anchor element and trigger a download
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "ModifiedDocument.pdf"; // Optional: You can specify a default filename here
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+
 
 function back() {
 
@@ -510,6 +562,7 @@ function goToPrevious(currentDivId, prevDivId) {
 		
 		//alert("hello")
         goToNext('questions3', 'questions4');
+		revealForm();
     }
 
     function toggleEmploymentFields() {
