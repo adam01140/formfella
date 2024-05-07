@@ -334,52 +334,6 @@ function displayUserProfile(state, city) {
 }
 
 
-
-    function fetchUserInfo() {
-	
-	
-        // Simulating fetching user data from the server
-        fetch('/get_data')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch');
-        }
-        return response.json();
-    }).then(data => {
-        console.log('Data received from server:', data);
-        if (data.state && data.city) {
-            displayUserProfile(data.state, data.city);
-        }
-    }).catch(error => console.error('Failed to fetch or parse data:', error));
-    }
-
-
-
-	
-	
-    function clearCookiesAndReturn() {
-        document.cookie = "completedQuestions=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        //window.location.href = 'index.html';
-    }
-
-    window.onload = function() {
-        fetchUserInfo();
- // Fetch and display user information on load
-    };
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		
 function propagateInput(className) {
     var inputs = document.getElementsByClassName(className);
@@ -742,6 +696,105 @@ data.fields.forEach(field => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function fetchUserInfo() {
+    fetch('/get_data')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+        return response.json();
+    }).then(data => {
+        console.log('Data received from server:', data);
+        if (data.state && data.city) {
+            displayUserProfile(data.state, data.city);
+            fillFormFields(data.state, data.city);
+        }
+    }).catch(error => console.error('Failed to fetch or parse data:', error));
+}
+
+function fillFormFields(state, city) {
+
+    document.getElementById('PetitionerCity[0]').value = city;
+	
+    document.getElementById('PetitionerState[0]').value = state;
+}
+
+
+
+
+	
+	
+    function clearCookiesAndReturn() {
+        document.cookie = "completedQuestions=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //window.location.href = 'index.html';
+    }
+
+    window.onload = function() {
+        fetchUserInfo();
+ // Fetch and display user information on load
+    };
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 window.onload = function() {

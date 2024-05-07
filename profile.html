@@ -7,7 +7,7 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f9;
-        padding: 20px;
+        padding: 0px;
         text-align: center;
     }
 
@@ -43,30 +43,7 @@
         margin-top: 20px;
     }
 
-    #questions {
-    border: 4px solid lightblue; /* Set the border color */
-    border-radius: 10px;        /* Rounded corners */
-    padding: 20px;              /* Some padding inside the border */
-    margin: 10px;               /* Margin outside the border */
-    background-color: #ffffff;  /* Light blue background */
-    width: 600px;               /* Fixed width */
-    height: 100%              /* Fixed height */
-    overflow-y: auto;           /* Enable vertical scrolling for overflow */
-    overflow-x: hidden;         /* Hide horizontal overflow */
-}
-
-
-
-#userForms {
-    border: 4px solid lightblue; /* Set the border color */
-    border-radius: 10px;        /* Rounded corners */
-    padding: 20px;              /* Some padding inside the border */
-    margin: 10px;               /* Margin outside the border */
-    background-color: #ffffff;  /* Light blue background */
-    width: 90%;               /* Fixed width */
-    height: 100%              /* Fixed height */
-    
-}
+   
 
 
 #userProfile {
@@ -75,10 +52,23 @@
     padding: 0px;              /* Some padding inside the border */
     margin: 20px;               /* Margin outside the border */
     background-color: #ffffff;  /* Light blue background */
-    width: 90%;              /* Fixed width */
+    width: 600px;               /* Fixed width */
     height: 100%              /* Fixed height */
     
 }
+
+
+#whole {
+    border: 4px solid lightblue; /* Set the border color */
+    border-radius: 10px;        /* Rounded corners */
+    padding: 0px;              /* Some padding inside the border */
+    margin: 20px;               /* Margin outside the border */
+    background-color: #ffffff;  /* Light blue background */
+    width: 1000px;               /* Fixed width */
+    height: 90%              /* Fixed height */
+    
+}
+
 
 #userProfile2 {
     border: 4px solid lightblue; /* Set the border color */
@@ -86,7 +76,7 @@
     padding: 0px;              /* Some padding inside the border */
     margin: 20px;               /* Margin outside the border */
     background-color: #ffffff;  /* Light blue background */
-    width: 60%;              /* Fixed width */
+    width: 530px;              /* Fixed width */
     height: 100%              /* Fixed height */
     
 }
@@ -97,7 +87,7 @@
     padding: 0px;              /* Some padding inside the border */
     margin: 0px;               /* Margin outside the border */
     background-color: #ffffff;  /* Light blue background */
-    width: 90%;               /* Fixed width */
+    width: 600px;                /* Fixed width */
     height: 100%              /* Fixed height */
     
 }
@@ -106,24 +96,23 @@
 	
 	
 	.pdf-container {
-    display: flex;
-    justify-content: space-around; /* Distributes space between and around content items */
-    align-items: start; /* Aligns items to be flex-start aligned */
+    display: block; /* Change this from flex to block */
+    text-align: center; /* Centers the content */
     margin-top: 20px;
+	
 }
 
 #pdfPreview, #pdfPreview2 {
-    flex: 1;  /* Each takes up equal space */
+    width: 490px;  /* Adjust this as necessary to fit the design */
+    margin: 10px auto;  /* This will center the divs in the container */
+    padding: 20px;
     border: 4px solid lightblue;
     border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
     background-color: #ffffff;
-    width: 45%;  /* Adjust width to make sure they do not squash together */
-    height: 100%;  /* Optional: Adjust height as necessary */
+    height: auto;  /* Adjust height as necessary */
     overflow-y: auto;
-    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
 }
+
 
 #pdfFrame, #pdfFrame2 {
     width: 100%;  /* Ensure it takes the full width of its parent */
@@ -154,14 +143,14 @@
 </style>
 
 
-</head>
-<body>
-
 <center>
+<div id="whole">
 
-<h1>Rob's Form Filler</h2>
 
-		<div id="userProfile">
+<br>
+<h1>Rob's Form Filler</h1>
+
+	<div id="userProfile">
 		<br>
     <h2>User Profile</h2>
 	
@@ -171,16 +160,16 @@
     <p><strong>City:</strong> <span id="userCity"></span></p>
 	<br>
 	</div>
-	<br>
+
+	<button class="next-button"  onclick="fillwaive()">Edit User Info</button>
+	<br><br><br><br>
 	</div>
 	<!--
 <button onclick="clearCookiesAndReturn()">Sign Out</button>
 -->
 
 
-	
-	
-	<br>
+
 	
 	
 	<div id="forms" >
@@ -193,7 +182,7 @@
 		
 		<br>
 		
-		<br>
+
 		<button class="next-button"  onclick="fillwaive()">Access Form</button>
 		<br>
 		
@@ -212,13 +201,13 @@
 		<br><br>
 		
     </div>
+	
 
     <div id="pdfPreview2">
         <h2>Small Claims Court</h3>
 		
 		<br>
 		
-		<br>
 		<button class="next-button"  onclick="fillwaive()">Access Form</button>
 		<br>
 		
@@ -242,6 +231,13 @@
 </div>
 <br>
 	</div>
+	<br><br>
+	
+	<button class="next-button"  onclick="signout()">Sign Out</button>
+	<br><br><br>
+<div>
+	
+
 	
 	
 <script>
@@ -251,6 +247,10 @@ function fillwaive() {
     window.location.href = 'waive.html';
 }
 
+function signout() {
+
+    window.location.href = 'index.html';
+}
 
  function uploadPDF() {
         var fileInput = document.getElementById('pdfFile');

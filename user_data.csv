@@ -2,3 +2,4 @@ username,password,state,city,logged
 q,1,8,7,
 1,2,California,SALINAS,
 rob,123,California,SALINAS,1
+adam,123,z,z,1
