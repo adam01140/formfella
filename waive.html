@@ -4,6 +4,28 @@
 <meta charset="UTF-8">
 <title>User Profile</title>
 <style>
+
+select {
+	text-align: center;
+    width: 300px;  /* Adjust width as needed */
+    height: 40px;  /* Adjust height as needed */
+    background-color: #64adc4;  /* Light blue background */
+    color: white;  /* Text color */
+    font-size: 16px;  /* Adjust font size as needed */
+    border-radius: 5px;  /* Rounded corners */
+    padding-left: 10px;  /* Padding inside the dropdown */
+    border: 1px solid #4CAF50;  /* Green border to match your button styles, adjust if needed */
+    cursor: pointer;  /* Cursor changes to pointer to indicate it's a clickable element */
+}
+
+/* Styles for option elements to ensure readability */
+option {
+    background-color: white;  /* White background makes the text easier to read */
+    color: black;  /* Dark text for high contrast on light background */
+}
+
+
+
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f9;
@@ -262,6 +284,7 @@
             <h1>Lawyer Information</h1>
             <p><strong>Do you have a lawyer?</strong></p>
             <select id="LawyerStatus" onchange="toggleLawyerFields()">
+			
                 <option value="">Select an option</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
