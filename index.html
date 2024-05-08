@@ -554,9 +554,10 @@ function logIn() {
             alert('Welcome');
         } else {
             response.text().then(text => alert(text));
+			window.location.reload();
         }
     }).catch(error => {
-        console.error('Login failed:', error);
+        //console.error('Login failed:', error);
     });
 }
 
